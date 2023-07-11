@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
     public float speed = 5.0f;
     private Rigidbody rb;
     private int pickupCount;
-    private Timer timer;
-    private bool gameOver;
+    public Timer timer;
+    public bool gameOver;
 
     [Header("UI")]
     public GameObject inGamePanel;
@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
         inGamePanel.SetActive(true);
         //Turn off our in game panel
         winPanel.SetActive(false);
+        gameOver = false;   
     }
 
     private void Update()
