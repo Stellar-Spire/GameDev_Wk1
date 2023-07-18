@@ -46,13 +46,13 @@ public class PlayerController : MonoBehaviour
     {
         if (gameOver == true)
             return;
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        float moveHorizontal = Input.GetAxis("Vertical");
+        float moveVertical = Input.GetAxis("Horizontal");
 
-        Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
+        Vector3 movement = new Vector3(-moveHorizontal, 0, moveVertical);
         rb.AddForce(movement * speed);
     }
-
+    
     private void OnTriggerEnter(Collider other)
     {
        if(other.tag == "Pick Up")
