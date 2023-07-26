@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     bool resetting = false;
     Color originalColor;
 
+    //Controllers
+    GameController gameController;
+
     [Header("UI")]
     public GameObject inGamePanel;
     public GameObject winPanel;
@@ -45,6 +48,7 @@ public class PlayerController : MonoBehaviour
         gameOver = false;
         resetPoint = GameObject.Find("Reset Point");
         originalColor = GetComponent<Renderer>().material.color;
+        gameController = FindObjectOfType<GameController>();
     }
 
     private void Update()
@@ -65,6 +69,9 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = new Vector3(-moveHorizontal, 0, moveVertical);
         rb.AddForce(movement * speed);
+
+        if (gameController.controlType == ControlType.WorldTilt)
+            return;
     }
     
     private void OnTriggerEnter(Collider other)
