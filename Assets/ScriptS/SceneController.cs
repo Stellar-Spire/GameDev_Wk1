@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-    // Will change our scene to the string passed in
+    //Will change our scene to the string passed in
     public void ChangeScene(string _sceneName)
     {
         SceneManager.LoadScene(_sceneName);
@@ -21,6 +21,12 @@ public class SceneController : MonoBehaviour
     public void ToTitleScene()
     {
         SceneManager.LoadScene("Title");
+    }
+
+    //Gets our active scenes name
+    public string GetSceneName()
+    {
+        return SceneManager.GetActiveScene().name;
     }
 
     //Quits our game
