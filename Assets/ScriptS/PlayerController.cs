@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -86,7 +87,20 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Respawn"))
         {
-            StartCoroutine(ResetPlayer());
+            if(SceneManager.GetActiveScene().name == "MyScene")
+            {
+                gameoverPanel.SetActive(true);
+                rb.velocity = Vector3.zero;
+                resetting = true;
+            }
+            else 
+                StartCoroutine(ResetPlayer());
+
+            if (collision.gameObject.CompareTag("Wall"))
+            {
+                if (gameController.wallType == WallType.Punishing)
+                    StartCoroutine(ResetPlayer());
+            }
         }
     }
     public IEnumerator ResetPlayer()
