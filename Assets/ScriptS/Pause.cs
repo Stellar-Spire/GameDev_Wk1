@@ -11,7 +11,6 @@ public class Pause : MonoBehaviour
     {
         pausePanel.SetActive(false);
     }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -19,11 +18,9 @@ public class Pause : MonoBehaviour
             TogglePause();
         }
     }
-
     public void TogglePause()
     {
         isPaused = !isPaused;
-
         if (isPaused)
         {
             pausePanel.SetActive(true);

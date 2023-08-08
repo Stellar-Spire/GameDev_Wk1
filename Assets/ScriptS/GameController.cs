@@ -21,7 +21,6 @@ public class GameController : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
     //Toggles our control type between world tilt and normal
     public void ToggleWorldTilt(bool _tilt)
     {

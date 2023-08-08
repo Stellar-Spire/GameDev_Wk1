@@ -11,7 +11,6 @@ public class TiltControls : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
-
     private void FixedUpdate()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");

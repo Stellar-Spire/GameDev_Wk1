@@ -15,8 +15,7 @@ public class PlayerController : MonoBehaviour
     Color originalColor;
 
     //Controllers
-    GameController gameController;
-
+    public GameController gameController;
     [Header("UI")]
     public GameObject inGamePanel;
     public GameObject winPanel;
@@ -25,7 +24,6 @@ public class PlayerController : MonoBehaviour
     public TMP_Text WinTimeText;
     public GameObject pausePanel;
     public GameObject gameoverPanel;
-
 
     // Start is called before the first frame update
     void Start()
@@ -50,10 +48,9 @@ public class PlayerController : MonoBehaviour
         originalColor = GetComponent<Renderer>().material.color;
         gameController = FindObjectOfType<GameController>();
     }
-
     private void Update()
     {
-        timerText.text = "Time " + timer.GetTime().ToString("F2");
+        timerText.text = " " + timer.GetTime().ToString("F2");
     }
 
     // Update is called once per frame
@@ -61,7 +58,6 @@ public class PlayerController : MonoBehaviour
     {
         if (resetting)
             return;
-
         if (gameOver == true)
             return;
         float moveHorizontal = Input.GetAxis("Vertical");
@@ -73,7 +69,6 @@ public class PlayerController : MonoBehaviour
         if (gameController.controlType == ControlType.WorldTilt)
             return;
     }
-    
     private void OnTriggerEnter(Collider other)
     {
        if(other.tag == "Pick Up")
@@ -87,7 +82,6 @@ public class PlayerController : MonoBehaviour
             timer = FindObjectOfType<Timer>();
         }
     }
-
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Respawn"))
@@ -95,7 +89,6 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(ResetPlayer());
         }
     }
-
     public IEnumerator ResetPlayer()
     {
         resetting = true;
@@ -117,7 +110,7 @@ public class PlayerController : MonoBehaviour
     void SetCountText()
     {
         //Display the amount of pickups left in our scene
-        scoreText.text = "Pickups Left: " + pickupCount;
+        scoreText.text = " " + pickupCount;
 
         if (pickupCount == 0)
         {
@@ -147,7 +140,6 @@ public class PlayerController : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene
             (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
-
     public void QuitGame()
     {
         Application.Quit();

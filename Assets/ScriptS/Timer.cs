@@ -11,20 +11,15 @@ public class Timer : MonoBehaviour
     {
         timing = true;
     }
-
     public void StopTimer()
     {
         timing = false;
     }
-
     public float GetTime()
     {
         return currentTime;
     }
-
-   
-
-    // Update is called once per frame
+    //Update is called once per frame
     void Update()
     {
         if (timing == true)
