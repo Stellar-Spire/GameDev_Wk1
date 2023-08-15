@@ -3518,6 +3518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlType: 1
+  wallType: 0
 --- !u!4 &281431013
 Transform:
   m_ObjectHideFlags: 0
@@ -19452,10 +19453,10 @@ MonoBehaviour:
   timer: {fileID: 674410839}
   gameOver: 0
   gameController: {fileID: 0}
-  inGamePanel: {fileID: 0}
+  inGamePanel: {fileID: 1799167753}
   winPanel: {fileID: 291541128}
-  scoreText: {fileID: 0}
-  timerText: {fileID: 0}
+  scoreText: {fileID: 1082598194}
+  timerText: {fileID: 1746136823}
   WinTimeText: {fileID: 70239798}
   pausePanel: {fileID: 814198429}
   gameoverPanel: {fileID: 2095562351}

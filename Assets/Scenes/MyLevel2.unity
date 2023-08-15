@@ -2455,6 +2455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlType: 0
+  wallType: 0
 --- !u!4 &761260667
 Transform:
   m_ObjectHideFlags: 0
@@ -2582,7 +2583,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &814198430
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5184,10 +5185,10 @@ MonoBehaviour:
   timer: {fileID: 674410839}
   gameOver: 0
   gameController: {fileID: 0}
-  inGamePanel: {fileID: 0}
+  inGamePanel: {fileID: 1731109319}
   winPanel: {fileID: 291541128}
-  scoreText: {fileID: 0}
-  timerText: {fileID: 0}
+  scoreText: {fileID: 1773449020}
+  timerText: {fileID: 834449581}
   WinTimeText: {fileID: 70239798}
   pausePanel: {fileID: 814198429}
   gameoverPanel: {fileID: 2095562351}
@@ -5442,7 +5443,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1731109320
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5913,7 +5914,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!20 &1834641363
 Camera:
   m_ObjectHideFlags: 0

@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public TMP_Text WinTimeText;
     public GameObject pausePanel;
     public GameObject gameoverPanel;
+    public CameraController cameraController;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour
         resetPoint = GameObject.Find("Reset Point");
         originalColor = GetComponent<Renderer>().material.color;
         gameController = FindObjectOfType<GameController>();
+        cameraController = FindObjectOfType<CameraController>();
     }
     private void Update()
     {
@@ -65,6 +67,15 @@ public class PlayerController : MonoBehaviour
         float moveVertical = Input.GetAxis("Horizontal");
 
         Vector3 movement = new Vector3(-moveHorizontal, 0, moveVertical);
+
+        if(cameraController.cameraStyle == CameraStyle.Free)
+        {
+            //Rotates the player to the direction of the camera
+            transform.eulerAngles = Camera.main.transform.eulerAngles;
+            //Translates the input vectors into coordinates
+            movement = transform.TransformDirection(movement);
+        }
+
         rb.AddForce(movement * speed);
 
         if (gameController.controlType == ControlType.WorldTilt)
