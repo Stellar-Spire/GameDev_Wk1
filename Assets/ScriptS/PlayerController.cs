@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     GameObject resetPoint;
     bool resetting = false;
     Color originalColor;
+    bool grounded = true;
 
     //Controllers
     public GameController gameController;
@@ -63,23 +64,35 @@ public class PlayerController : MonoBehaviour
             return;
         if (gameOver == true)
             return;
-        float moveHorizontal = Input.GetAxis("Vertical");
-        float moveVertical = Input.GetAxis("Horizontal");
-
-        Vector3 movement = new Vector3(-moveHorizontal, 0, moveVertical);
-
-        if(cameraController.cameraStyle == CameraStyle.Free)
-        {
-            //Rotates the player to the direction of the camera
-            transform.eulerAngles = Camera.main.transform.eulerAngles;
-            //Translates the input vectors into coordinates
-            movement = transform.TransformDirection(movement);
-        }
-
-        rb.AddForce(movement * speed);
-
         if (gameController.controlType == ControlType.WorldTilt)
             return;
+       if (grounded)
+        {
+            float moveHorizontal = Input.GetAxis("Horizontal");
+            float moveVertical = Input.GetAxis("Vertical");
+            Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+            if (cameraController.cameraStyle == CameraStyle.Free)
+            {
+                //Rotates the player to the direction of the camera
+                transform.eulerAngles = Camera.main.transform.eulerAngles;
+                //Translates the input vectors into coordinates
+                movement = transform.TransformDirection(movement);
+            }
+            rb.AddForce(movement * speed);
+        }
+        
+        //float moveHorizontal = Input.GetAxis("Vertical");
+        //float moveVertical = Input.GetAxis("Horizontal");
+
+        //Vector3 movement = new Vector3(-moveHorizontal, 0, moveVertical);
+
+       
+
+       
+
+     
+
+       
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -106,13 +119,22 @@ public class PlayerController : MonoBehaviour
             }
             else 
                 StartCoroutine(ResetPlayer());
-
-            if (collision.gameObject.CompareTag("Wall"))
-            {
-                if (gameController.wallType == WallType.Punishing)
-                    StartCoroutine(ResetPlayer());
-            }
         }
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            if (gameController.wallType == WallType.Punishing)
+                StartCoroutine(ResetPlayer());
+        }
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.collider.CompareTag("Ground"))
+            grounded = true;
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.collider.CompareTag("Ground"))
+            grounded = false;
     }
     public IEnumerator ResetPlayer()
     {
@@ -170,5 +192,6 @@ public class PlayerController : MonoBehaviour
         Application.Quit();
     }
 
+   
 }
 
